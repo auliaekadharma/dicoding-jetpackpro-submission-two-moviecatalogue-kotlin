@@ -64,7 +64,7 @@ class JsonHelper(private val context: Context) {
             for (i in 0 until listArray.length()) {
                 val tvshow = listArray.getJSONObject(i)
 
-                val movieId = tvshow.getString("movieId")
+                val tvshowId = tvshow.getString("tvshowId")
                 val title = tvshow.getString("title")
                 val year = tvshow.getString("year")
                 val genres = tvshow.getString("genres")
@@ -72,7 +72,7 @@ class JsonHelper(private val context: Context) {
                 val description = tvshow.getString("description")
                 val poster = tvshow.getString("poster")
 
-                val tvshowResponse = TvshowResponse(movieId, title, year, genres, duration, description, poster)
+                val tvshowResponse = TvshowResponse(tvshowId, title, year, genres, duration, description, poster)
                 list.add(tvshowResponse)
             }
         } catch (e: JSONException) {

@@ -4,16 +4,7 @@ import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.RemoteDataSource
 
-class MovieCatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) : MovieCatalogueDataSource {
-
-    companion object {
-        @Volatile
-        private var instance: MovieCatalogueRepository? = null
-        fun getInstance(remoteData: RemoteDataSource): MovieCatalogueRepository =
-            instance ?: synchronized(this) {
-                instance ?: MovieCatalogueRepository(remoteData)
-            }
-    }
+class FakeMovieCatalogueRepository (private val remoteDataSource: RemoteDataSource) : MovieCatalogueDataSource {
 
     override fun getAllMovies(): List<MovieEntity> {
         val movieResponses = remoteDataSource.getAllMovies()

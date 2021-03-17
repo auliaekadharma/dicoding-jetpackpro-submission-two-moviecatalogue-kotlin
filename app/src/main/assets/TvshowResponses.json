@@ -1,7 +1,7 @@
 {
   "tvshows": [
     {
-      "movieId": "t01",
+      "tvshowId": "t01",
       "title": "Doom Patrol",
       "year": "2019",
       "genres": "Sci-Fi & Fantasy, Action & Adventure, Comedy",
@@ -10,7 +10,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/jhcd6aeRRl50AyOHoIGxv0sU0sw.jpg"
     },
     {
-      "movieId": "t02",
+      "tvshowId": "t02",
       "title": "Dragon Ball",
       "year": "1986",
       "genres": "Comedy, Sci-Fi & Fantasy, Animation, Action & Adventure",
@@ -19,7 +19,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/tZ0jXOeYBWPZ0OWzUhTlYvMF7YR.jpg"
     },
 	{
-      "movieId": "t03",
+      "tvshowId": "t03",
       "title": "Game of Thrones",
       "year": "2011",
       "genres": "Sci-Fi & Fantasy, Drama, Action & Adventure",
@@ -28,7 +28,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/44rw2cOQrgUthZMhp3eibpXVy9p.jpg"
     },
 	{
-      "movieId": "t04",
+      "tvshowId": "t04",
       "title": "Gotham",
       "year": "2014",
       "genres": "Drama, Crime, Sci-Fi & Fantasy",
@@ -37,7 +37,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/h53ACyT9MgVEVRlEvVyVBAUkLmh.jpg"
     },
 	{
-      "movieId": "t05",
+      "tvshowId": "t05",
       "title": "Marvel's Iron Fist",
       "year": "2017",
       "genres": "Action & Adventure, Drama, Sci-Fi & Fantasy",
@@ -46,7 +46,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4l6KD9HhtD6nCDEfg10Lp6C6zah.jpg"
     },
 	{
-      "movieId": "t06",
+      "tvshowId": "t06",
       "title": "Naruto Shippuden",
       "year": "2007",
       "genres": "Animation, Action & Adventure, Sci-Fi & Fantasy",
@@ -55,7 +55,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zAYRe2bJxpWTVrwwmBc00VFkAf4.jpg"
     },
 	{
-      "movieId": "t07",
+      "tvshowId": "t07",
       "title": "NCIS",
       "year": "2003",
       "genres": "Crime, Action & Adventure, Drama",
@@ -64,7 +64,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fi8EvaWtL5CvoielOjjVvTr7ux3.jpg"
     },
 	{
-      "movieId": "t08",
+      "tvshowId": "t08",
       "title": "Supergirl",
       "year": "2015",
       "genres": "Drama, Sci-Fi & Fantasy, Action & Adventure",
@@ -73,7 +73,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vqBsgL9nd2v04ZvCqPzwtckDdFD.jpg"
     },
 	{
-      "movieId": "t09",
+      "tvshowId": "t09",
       "title": "The Simpsons",
       "year": "1989",
       "genres": "Family, Animation, Comedy",
@@ -82,7 +82,7 @@
 	  "poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qcr9bBY6MVeLzriKCmJOv1562uY.jpg"
     },
 	{
-      "movieId": "t10",
+      "tvshowId": "t10",
       "title": "The Walking Dead",
       "year": "2010",
       "genres": "Action & Adventure, Drama, Sci-Fi & Fantasy",
