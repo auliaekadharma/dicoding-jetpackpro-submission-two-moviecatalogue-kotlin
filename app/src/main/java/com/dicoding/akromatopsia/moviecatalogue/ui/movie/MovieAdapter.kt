@@ -47,6 +47,7 @@ class MovieAdapter(private val callback: MovieFragmentCallback) : RecyclerView.A
                     itemView.context.startActivity(intent)
                 }
                 imgShare.setOnClickListener { callback.onShareClick(movie) }
+
                 Glide.with(itemView.context)
                         .load(movie.poster)
                         .apply(RequestOptions.placeholderOf(R.drawable.ic_loading)

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.akromatopsia.moviecatalogue.R
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.FragmentTvshowBinding
+import com.dicoding.akromatopsia.moviecatalogue.viewmodel.ViewModelFactory
 
 class TvshowFragment : Fragment(), TvshowFragmentCallback {
 
@@ -29,7 +30,8 @@ class TvshowFragment : Fragment(), TvshowFragmentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvshowViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[TvshowViewModel::class.java]
             val tvshows = viewModel.getTvshows()
 
             val adapter = TvshowAdapter(this)

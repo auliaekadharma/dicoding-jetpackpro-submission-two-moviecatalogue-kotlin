@@ -10,6 +10,7 @@ import com.dicoding.akromatopsia.moviecatalogue.R
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.ActivityDetailTvshowBinding
 import com.dicoding.akromatopsia.moviecatalogue.databinding.ContentDetailTvshowBinding
+import com.dicoding.akromatopsia.moviecatalogue.viewmodel.ViewModelFactory
 
 class DetailTvshowActivity : AppCompatActivity() {
 
@@ -30,7 +31,8 @@ class DetailTvshowActivity : AppCompatActivity() {
         setSupportActionBar(activityDetailTvshowBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailTvshowViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailTvshowViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.akromatopsia.moviecatalogue.R
 import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.FragmentMovieBinding
+import com.dicoding.akromatopsia.moviecatalogue.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment(), MovieFragmentCallback {
 
@@ -28,7 +29,8 @@ class MovieFragment : Fragment(), MovieFragmentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MovieViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[MovieViewModel::class.java]
             val movies = viewModel.getMovies()
 
             val movieAdapter = MovieAdapter(this)

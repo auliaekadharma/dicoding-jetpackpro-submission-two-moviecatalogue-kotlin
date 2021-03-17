@@ -7,5 +7,5 @@ data class TvshowEntity(
     var genres: String,
     var duration: String,
     var description: String,
-    var poster: Int,
+    var poster: String,
 )

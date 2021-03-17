@@ -2,9 +2,10 @@ package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepository
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
 
-class DetailMovieViewModel : ViewModel() {
+class DetailMovieViewModel (private val movieCatalogueRepository: MovieCatalogueRepository) : ViewModel() {
     private lateinit var movieId: String
 
     fun setSelectedMovie(movieId: String) {
@@ -13,7 +14,7 @@ class DetailMovieViewModel : ViewModel() {
 
     fun getMovie(): MovieEntity {
         lateinit var movie: MovieEntity
-        val moviesEntities = DataDummy.generateDummyMovies()
+        val moviesEntities = movieCatalogueRepository.getAllMovies()
         for (movieEntity in moviesEntities) {
             if (movieEntity.movieId == movieId) {
                 movie = movieEntity

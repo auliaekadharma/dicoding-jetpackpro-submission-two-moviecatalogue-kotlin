@@ -2,9 +2,10 @@ package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 
 import androidx.lifecycle.ViewModel
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepository
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
 
-class DetailTvshowViewModel : ViewModel() {
+class DetailTvshowViewModel (private val movieCatalogueRepository: MovieCatalogueRepository) : ViewModel() {
     private lateinit var tvshowId: String
 
     fun setSelectedTvshow(tvshowId: String) {
@@ -13,7 +14,7 @@ class DetailTvshowViewModel : ViewModel() {
 
     fun getTvshow(): TvshowEntity {
         lateinit var tvshow: TvshowEntity
-        val tvshowsEntities = DataDummy.generateDummyTvshow()
+        val tvshowsEntities = movieCatalogueRepository.getAllTvshows()
         for (tvshowEntity in tvshowsEntities) {
             if (tvshowEntity.tvshowId == tvshowId) {
                 tvshow = tvshowEntity
