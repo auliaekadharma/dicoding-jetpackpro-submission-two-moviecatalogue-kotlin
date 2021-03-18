@@ -1,5 +1,6 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.tvshow
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,17 +31,23 @@ class TvshowFragment : Fragment(), TvshowFragmentCallback {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
+
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[TvshowViewModel::class.java]
-            val tvshows = viewModel.getTvshows()
 
-            val adapter = TvshowAdapter(this)
-            adapter.setTvshows(tvshows)
+            val tvshowAdapter = TvshowAdapter(this)
+
+            fragmentTvshowBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getTvshows().observe(viewLifecycleOwner, { tvshows ->
+                fragmentTvshowBinding.progressBar.visibility = View.GONE
+                tvshowAdapter.setTvshows(tvshows)
+                tvshowAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentTvshowBinding.rvTvshow) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                this.adapter = adapter
+                this.adapter = tvshowAdapter
             }
         }
     }

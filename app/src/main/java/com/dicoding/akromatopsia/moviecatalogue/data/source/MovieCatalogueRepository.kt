@@ -1,8 +1,12 @@
 package com.dicoding.akromatopsia.moviecatalogue.data.source
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.RemoteDataSource
+import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.MovieResponse
+import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.TvshowResponse
 
 class MovieCatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) : MovieCatalogueDataSource {
 
@@ -15,39 +19,52 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
             }
     }
 
-    override fun getAllMovies(): List<MovieEntity> {
-        val movieResponses = remoteDataSource.getAllMovies()
-        val movieList = ArrayList<MovieEntity>()
-        for (response in movieResponses) {
-            val movie = MovieEntity(
-                response.movieId,
-                response.title,
-                response.year,
-                response.releaseDate,
-                response.genres,
-                response.duration,
-                response.description,
-                response.poster)
-            movieList.add(movie)
-        }
-        return movieList
+    override fun getAllMovies(): LiveData<List<MovieEntity>> {
+        val movieResults = MutableLiveData<List<MovieEntity>>()
+        remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
+            override fun onAllMoviesReceived(movieResponses: List<MovieResponse>) {
+                val movieList = java.util.ArrayList<MovieEntity>()
+                for (response in movieResponses) {
+                    val movie = MovieEntity(
+                        response.movieId,
+                        response.title,
+                        response.year,
+                        response.releaseDate,
+                        response.genres,
+                        response.duration,
+                        response.description,
+                        response.poster
+                    )
+                    movieList.add(movie)
+                }
+                movieResults.postValue(movieList)
+            }
+        })
+
+        return movieResults
     }
 
-    override fun getAllTvshows(): List<TvshowEntity> {
-        val tvshowResponses = remoteDataSource.getAllTvshows()
-        val tvshowList = ArrayList<TvshowEntity>()
-        for (response in tvshowResponses) {
-            val tvshow = TvshowEntity(
-                response.tvshowId,
-                response.title,
-                response.year,
-                response.genres,
-                response.duration,
-                response.description,
-                response.poster)
-            tvshowList.add(tvshow)
-        }
-        return tvshowList
+    override fun getAllTvshows(): LiveData<List<TvshowEntity>> {
+        val tvshowResults = MutableLiveData<List<TvshowEntity>>()
+        remoteDataSource.getAllTvshows(object : RemoteDataSource.LoadTvshowsCallback {
+            override fun onAllTvshowsReceived(tvshowResponses: List<TvshowResponse>) {
+                val tvshowList = java.util.ArrayList<TvshowEntity>()
+                for (response in tvshowResponses) {
+                    val tvshow = TvshowEntity(
+                        response.tvshowId,
+                        response.title,
+                        response.year,
+                        response.genres,
+                        response.duration,
+                        response.description,
+                        response.poster)
+                    tvshowList.add(tvshow)
+                }
+                tvshowResults.postValue(tvshowList)
+            }
+        })
+
+        return tvshowResults
     }
 
 }

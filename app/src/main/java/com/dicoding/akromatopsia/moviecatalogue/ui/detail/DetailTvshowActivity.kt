@@ -1,6 +1,7 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -37,9 +38,18 @@ class DetailTvshowActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             val tvshowId = extras.getString(EXTRA_TVSHOW)
+
             if (tvshowId != null) {
+                activityDetailTvshowBinding.progressBar.visibility = View.VISIBLE
+
                 viewModel.setSelectedTvshow(tvshowId)
-                populateTvshow(viewModel.getTvshow() as TvshowEntity)
+
+                viewModel.getTvshow().observe(this, { tvshow: List<TvshowEntity> ->
+                    activityDetailTvshowBinding.progressBar.visibility = View.GONE
+                    val id = tvshow.indexOfFirst{it.tvshowId == tvshowId}
+                    populateTvshow(tvshow[id])
+
+                })
             }
         }
 

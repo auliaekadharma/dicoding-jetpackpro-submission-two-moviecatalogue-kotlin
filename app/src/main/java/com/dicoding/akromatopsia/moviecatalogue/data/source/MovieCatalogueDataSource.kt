@@ -1,12 +1,13 @@
 package com.dicoding.akromatopsia.moviecatalogue.data.source
 
+import androidx.lifecycle.LiveData
 import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 
 interface MovieCatalogueDataSource {
 
-    fun getAllMovies(): List<MovieEntity>
+    fun getAllMovies(): LiveData<List<MovieEntity>>
 
-    fun getAllTvshows(): List<TvshowEntity>
+    fun getAllTvshows(): LiveData<List<TvshowEntity>>
 
 }

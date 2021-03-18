@@ -1,6 +1,7 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -37,9 +38,17 @@ class DetailMovieActivity : AppCompatActivity() {
         val extras = intent.extras
         if (extras != null) {
             val movieId = extras.getString(EXTRA_MOVIE)
+
             if (movieId != null) {
+                activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
+
                 viewModel.setSelectedMovie(movieId)
-                populateMovie(viewModel.getMovie() as MovieEntity)
+
+                viewModel.getMovie().observe(this, { movie: List<MovieEntity> ->
+                    activityDetailMovieBinding.progressBar.visibility = View.GONE
+                    val id = movie.indexOfFirst{it.movieId == movieId}
+                    populateMovie(movie[id])
+                })
             }
         }
     }
