@@ -3,6 +3,7 @@ package com.dicoding.akromatopsia.moviecatalogue.data.source.remote
 import android.os.Handler
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.MovieResponse
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.TvshowResponse
+import com.dicoding.akromatopsia.moviecatalogue.utils.EspressoIdlingResources
 import com.dicoding.akromatopsia.moviecatalogue.utils.JsonHelper
 
 class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
@@ -22,11 +23,19 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     fun getAllMovies(callback: LoadMoviesCallback) {
-        handler.postDelayed({ callback.onAllMoviesReceived(jsonHelper.loadMovies()) }, SERVICE_LATENCY_IN_MILLIS)
+        EspressoIdlingResources.increment()
+        handler.postDelayed({
+            callback.onAllMoviesReceived(jsonHelper.loadMovies())
+            EspressoIdlingResources.decrement()
+                            }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     fun getAllTvshows(callback: LoadTvshowsCallback) {
-        handler.postDelayed({ callback.onAllTvshowsReceived(jsonHelper.loadTvshows()) }, SERVICE_LATENCY_IN_MILLIS)
+        EspressoIdlingResources.increment()
+        handler.postDelayed({
+            callback.onAllTvshowsReceived(jsonHelper.loadTvshows())
+            EspressoIdlingResources.decrement()
+                            }, SERVICE_LATENCY_IN_MILLIS)
     }
 
     interface LoadMoviesCallback {

@@ -1,7 +1,9 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -9,6 +11,9 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.dicoding.akromatopsia.moviecatalogue.R
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
+import com.dicoding.akromatopsia.moviecatalogue.utils.EspressoIdlingResources
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -20,19 +25,30 @@ class HomeActivityTest {
     @get:Rule
     var activityRule = ActivityScenarioRule(HomeActivity::class.java)
 
+    @Before
+    fun setUp() {
+        ActivityScenario.launch(HomeActivity::class.java)
+        IdlingRegistry.getInstance().register(EspressoIdlingResources.idlingResource)
+    }
+
+    @After
+    fun tearDown() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResources.idlingResource)
+    }
+
     @Test
     fun loadMovies() {
-        delayTwoSecond()
+        //delayTwoSecond()
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
-        delayTwoSecond()
-        delayTwoSecond()
+        //delayTwoSecond()
+        //delayTwoSecond()
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        delayTwoSecond()
+        //delayTwoSecond()
         onView(withId(R.id.text_title)).check(matches(isDisplayed()))
         onView(withId(R.id.text_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.text_year)).check(matches(isDisplayed()))
@@ -49,7 +65,7 @@ class HomeActivityTest {
 
     @Test
     fun loadTvshows() {
-        delayTwoSecond()
+        //delayTwoSecond()
         onView(withText("TV Shows")).perform(click())
         onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvshow.size))
@@ -57,10 +73,10 @@ class HomeActivityTest {
 
     @Test
     fun loadDetailTvshow() {
-        delayTwoSecond()
+        //delayTwoSecond()
         onView(withText("TV Shows")).perform(click())
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        delayTwoSecond()
+        //delayTwoSecond()
         onView(withId(R.id.text_title)).check(matches(isDisplayed()))
         onView(withId(R.id.text_title)).check(matches(withText(dummyTvshow[0].title)))
         onView(withId(R.id.text_year)).check(matches(isDisplayed()))
@@ -73,11 +89,12 @@ class HomeActivityTest {
         onView(withId(R.id.text_description)).check(matches(withText(dummyTvshow[0].description)))
     }
 
-    private fun delayTwoSecond() {
-        try {
-            Thread.sleep(2000)
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-    }
+    // Removed due to IdlingResource implementation
+//    private fun delayTwoSecond() {
+//        try {
+//            Thread.sleep(2000)
+//        } catch (e: InterruptedException) {
+//            e.printStackTrace()
+//        }
+//    }
 }
