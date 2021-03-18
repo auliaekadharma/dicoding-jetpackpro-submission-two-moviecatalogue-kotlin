@@ -22,13 +22,17 @@ class HomeActivityTest {
 
     @Test
     fun loadMovies() {
+        delayTwoSecond()
         onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyMovie.size))
     }
 
     @Test
     fun loadDetailMovie() {
+        delayTwoSecond()
+        delayTwoSecond()
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        delayTwoSecond()
         onView(withId(R.id.text_title)).check(matches(isDisplayed()))
         onView(withId(R.id.text_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.text_year)).check(matches(isDisplayed()))
@@ -45,6 +49,7 @@ class HomeActivityTest {
 
     @Test
     fun loadTvshows() {
+        delayTwoSecond()
         onView(withText("TV Shows")).perform(click())
         onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(dummyTvshow.size))
@@ -52,8 +57,10 @@ class HomeActivityTest {
 
     @Test
     fun loadDetailTvshow() {
+        delayTwoSecond()
         onView(withText("TV Shows")).perform(click())
         onView(withId(R.id.rv_tvshow)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        delayTwoSecond()
         onView(withId(R.id.text_title)).check(matches(isDisplayed()))
         onView(withId(R.id.text_title)).check(matches(withText(dummyTvshow[0].title)))
         onView(withId(R.id.text_year)).check(matches(isDisplayed()))
@@ -64,5 +71,13 @@ class HomeActivityTest {
         onView(withId(R.id.text_duration)).check(matches(withText(dummyTvshow[0].duration)))
         onView(withId(R.id.text_description)).check(matches(isDisplayed()))
         onView(withId(R.id.text_description)).check(matches(withText(dummyTvshow[0].description)))
+    }
+
+    private fun delayTwoSecond() {
+        try {
+            Thread.sleep(2000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
     }
 }

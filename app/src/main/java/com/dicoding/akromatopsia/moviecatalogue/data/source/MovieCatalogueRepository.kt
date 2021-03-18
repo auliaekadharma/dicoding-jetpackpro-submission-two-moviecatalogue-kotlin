@@ -23,7 +23,7 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
         val movieResults = MutableLiveData<List<MovieEntity>>()
         remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMoviesCallback {
             override fun onAllMoviesReceived(movieResponses: List<MovieResponse>) {
-                val movieList = java.util.ArrayList<MovieEntity>()
+                val movieList = ArrayList<MovieEntity>()
                 for (response in movieResponses) {
                     val movie = MovieEntity(
                         response.movieId,
@@ -48,7 +48,7 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
         val tvshowResults = MutableLiveData<List<TvshowEntity>>()
         remoteDataSource.getAllTvshows(object : RemoteDataSource.LoadTvshowsCallback {
             override fun onAllTvshowsReceived(tvshowResponses: List<TvshowResponse>) {
-                val tvshowList = java.util.ArrayList<TvshowEntity>()
+                val tvshowList = ArrayList<TvshowEntity>()
                 for (response in tvshowResponses) {
                     val tvshow = TvshowEntity(
                         response.tvshowId,

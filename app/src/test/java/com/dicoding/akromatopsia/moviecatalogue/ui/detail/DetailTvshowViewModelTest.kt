@@ -1,12 +1,16 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepository
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
@@ -20,8 +24,15 @@ class DetailTvshowViewModelTest {
     private val dummyTvshow = DataDummy.generateDummyTvshow()[0]
     private val tvshowId = dummyTvshow.tvshowId
 
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Mock
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
+
+    @Mock
+    private lateinit var tvshowObserver: Observer<List<TvshowEntity>>
 
     @Before
     fun setUp() {
@@ -32,16 +43,23 @@ class DetailTvshowViewModelTest {
 
     @Test
     fun getTvshow() {
-        `when`(movieCatalogueRepository.getAllTvshows()).thenReturn(listOf(dummyTvshow))
-        viewModel.setSelectedTvshow(dummyTvshow.tvshowId)
-        val tvshowEntity = viewModel.getTvshow()
+        val tvshow = MutableLiveData<List<TvshowEntity>>()
+        tvshow.value = listOf(dummyTvshow)
+
+        `when`(movieCatalogueRepository.getAllTvshows()).thenReturn(tvshow)
+        val tvshowEntity = viewModel.getTvshow().value
+        Mockito.verify(movieCatalogueRepository).getAllTvshows()
+
         assertNotNull(tvshowEntity)
-        assertEquals(dummyTvshow.tvshowId, tvshowEntity.tvshowId)
-        assertEquals(dummyTvshow.year, tvshowEntity.year)
-        assertEquals(dummyTvshow.genres, tvshowEntity.genres)
-        assertEquals(dummyTvshow.duration, tvshowEntity.duration)
-        assertEquals(dummyTvshow.description, tvshowEntity.description)
-        assertEquals(dummyTvshow.poster, tvshowEntity.poster)
-        assertEquals(dummyTvshow.title, tvshowEntity.title)
+        assertEquals(dummyTvshow.tvshowId, tvshowEntity?.get(0)?.tvshowId)
+        assertEquals(dummyTvshow.year, tvshowEntity?.get(0)?.year)
+        assertEquals(dummyTvshow.genres, tvshowEntity?.get(0)?.genres)
+        assertEquals(dummyTvshow.duration, tvshowEntity?.get(0)?.duration)
+        assertEquals(dummyTvshow.description, tvshowEntity?.get(0)?.description)
+        assertEquals(dummyTvshow.poster, tvshowEntity?.get(0)?.poster)
+        assertEquals(dummyTvshow.title, tvshowEntity?.get(0)?.title)
+
+        viewModel.getTvshow().observeForever(tvshowObserver)
+        Mockito.verify(tvshowObserver).onChanged(listOf(dummyTvshow))
     }
 }
