@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.akromatopsia.moviecatalogue.R
-import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.ItemsTvshowBinding
 import com.dicoding.akromatopsia.moviecatalogue.ui.detail.DetailTvshowActivity
 

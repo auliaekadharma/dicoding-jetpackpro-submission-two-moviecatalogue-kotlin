@@ -3,9 +3,8 @@ package com.dicoding.akromatopsia.moviecatalogue.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepository
-import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepositoryTest
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull

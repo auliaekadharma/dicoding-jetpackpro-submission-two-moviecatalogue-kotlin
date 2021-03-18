@@ -2,23 +2,16 @@ package com.dicoding.akromatopsia.moviecatalogue.data.source
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.RemoteDataSource
-import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.MovieResponse
-import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.TvshowResponse
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
 import com.dicoding.akromatopsia.moviecatalogue.utils.LiveDataTestUtil
-import org.junit.Before
-import org.junit.Test
-
-import org.junit.Assert.*
-import org.mockito.Mockito
-import org.mockito.Mockito.`when`
-
-import org.mockito.Mockito.mock
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.verify
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Rule
+import org.junit.Test
+import org.mockito.Mockito.mock
 
 class MovieCatalogueRepositoryTest {
 

@@ -3,8 +3,7 @@ package com.dicoding.akromatopsia.moviecatalogue.ui.tvshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
-import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.MovieCatalogueRepository
 import com.dicoding.akromatopsia.moviecatalogue.utils.DataDummy
 import org.junit.Assert

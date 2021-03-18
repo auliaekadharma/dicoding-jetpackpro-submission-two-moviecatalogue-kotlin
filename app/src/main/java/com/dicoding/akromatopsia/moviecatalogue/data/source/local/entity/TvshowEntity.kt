@@ -1,10 +1,9 @@
-package com.dicoding.akromatopsia.moviecatalogue.data
+package com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity
 
-data class MovieEntity(
-    var movieId: String,
+data class TvshowEntity(
+    var tvshowId: String,
     var title: String,
     var year: String,
-    var releaseDate: String,
     var genres: String,
     var duration: String,
     var description: String,

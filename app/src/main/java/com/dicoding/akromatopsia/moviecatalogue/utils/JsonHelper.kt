@@ -2,8 +2,6 @@ package com.dicoding.akromatopsia.moviecatalogue.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
-import android.graphics.BitmapFactory
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.MovieResponse
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.TvshowResponse
 import org.json.JSONException

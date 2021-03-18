@@ -1,6 +1,5 @@
 package com.dicoding.akromatopsia.moviecatalogue.ui.movie
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.akromatopsia.moviecatalogue.R
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.FragmentMovieBinding
 import com.dicoding.akromatopsia.moviecatalogue.viewmodel.ViewModelFactory
 

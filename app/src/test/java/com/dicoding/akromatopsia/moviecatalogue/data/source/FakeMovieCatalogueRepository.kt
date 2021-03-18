@@ -2,8 +2,8 @@ package com.dicoding.akromatopsia.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
-import com.dicoding.akromatopsia.moviecatalogue.data.TvshowEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.MovieEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.RemoteDataSource
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.MovieResponse
 import com.dicoding.akromatopsia.moviecatalogue.data.source.remote.response.TvshowResponse

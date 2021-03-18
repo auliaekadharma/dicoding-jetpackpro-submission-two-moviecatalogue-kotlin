@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.akromatopsia.moviecatalogue.R
-import com.dicoding.akromatopsia.moviecatalogue.data.MovieEntity
+import com.dicoding.akromatopsia.moviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.akromatopsia.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.dicoding.akromatopsia.moviecatalogue.databinding.ContentDetailMovieBinding
 import com.dicoding.akromatopsia.moviecatalogue.viewmodel.ViewModelFactory
